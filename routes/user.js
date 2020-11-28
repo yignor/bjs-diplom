@@ -19,7 +19,7 @@ router.post('/register', upload.none(), (request, response) => {
   }
 
   if (error !== '') {
-    response.json({ success: false, data: error });
+    response.json({ success: false, error: error });
     return;
   }
 
@@ -50,9 +50,9 @@ router.post('/register', upload.none(), (request, response) => {
 
     request.session.authorized = true;
     request.session.login = login;
-    response.json({ success: true, userId: user.id });
+    response.json({ success: true, userId: registerUser.id });
   } else {
-    response.json({ success: false, data: `Логин ${login} уже существует.` });
+    response.json({ success: false, error: `Логин ${login} уже существует.` });
   }
 });
 
@@ -68,7 +68,7 @@ router.post('/login', upload.none(), (request, response) => {
   }
 
   if (error !== '') {
-    response.json({ success: false, data: error });
+    response.json({ success: false, error: error });
     return;
   }
 
@@ -78,7 +78,7 @@ router.post('/login', upload.none(), (request, response) => {
     request.session.login = login;
     response.json({ success: true, userId: user.id });
   } else {
-    response.json({ success: false, data: `Пользователь c логином ${login} и указанным паролем не найден` });
+    response.json({ success: false, error: `Пользователь c логином ${login} и указанным паролем не найден` });
   }
 });
 
@@ -88,7 +88,7 @@ router.post('/logout', (request, response) => {
     delete request.session.login;
     response.json({ success: true });
   } else {
-    response.json({ success: false, data: 'Пользователь не авторизован' });
+    response.json({ success: false, error: 'Пользователь не авторизован' });
   }
 });
 
@@ -97,7 +97,7 @@ router.get('/current', (request, response) => {
   if (user) {
     response.json({ success: true, data: user });
   } else {
-    response.json({ success: false, data: 'Пользователь не авторизован' });
+    response.json({ success: false, error: 'Пользователь не авторизован' });
   }
 });
 
