@@ -1,4 +1,4 @@
-'use strick';
+'use strict';
 
 const userLogout = new LogoutButton();
 
