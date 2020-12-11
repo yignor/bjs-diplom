@@ -37,7 +37,7 @@ moneyManager.addMoneyCallback = data => {
 
 moneyManager.conversionMoneyCallback = data => {
     ApiConnector.convertMoney(data, response => {
-        let message = '';
+        let message = string;
         if (response.success) {
             message = `${data.fromAmount} ${data.fromCurrency} успешно сконвертированы в ${data.targetCurrency}`;
             ProfileWidget.showProfile(response.data);
@@ -50,7 +50,7 @@ moneyManager.conversionMoneyCallback = data => {
 
 moneyManager.sendMoneyCallback = data => {
     ApiConnector.transferMoney(data, response => {
-        let message = '';
+        let message = string;
         if (response.success) {
             message = `${data.amount} ${data.currency} успешно переведены пользователю с ID ${data.to}`;
             ProfileWidget.showProfile(response.data);
