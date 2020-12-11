@@ -24,7 +24,7 @@ let updateCurrencies = setInterval(() => refreshCurrencies(), 20000);
 const moneyManager = new MoneyManager();
 moneyManager.addMoneyCallback = data => {
     ApiConnector.addMoney(data, response => {
-        let message = string;
+        let message = '';
         if (response.success) {
             message = `Счёт успешно пополнен на ${data.amount} ${data.currency}`;
             ProfileWidget.showProfile(response.data);
@@ -37,7 +37,7 @@ moneyManager.addMoneyCallback = data => {
 
 moneyManager.conversionMoneyCallback = data => {
     ApiConnector.convertMoney(data, response => {
-        let message = string;
+        let message = '';
         if (response.success) {
             message = `${data.fromAmount} ${data.fromCurrency} успешно сконвертированы в ${data.targetCurrency}`;
             ProfileWidget.showProfile(response.data);
@@ -50,7 +50,7 @@ moneyManager.conversionMoneyCallback = data => {
 
 moneyManager.sendMoneyCallback = data => {
     ApiConnector.transferMoney(data, response => {
-        let message = string;
+        let message = '';
         if (response.success) {
             message = `${data.amount} ${data.currency} успешно переведены пользователю с ID ${data.to}`;
             ProfileWidget.showProfile(response.data);
@@ -74,7 +74,7 @@ ApiConnector.getFavorites(response => {
 
 favoritesWidget.addUserCallback = data => {
     ApiConnector.addUserToFavorites(data, response => {
-        let message = string;
+        let message = '';
         if (response.success) {
             message = `Пользователь ${data.name} добавлен в адресную книгу`;
             updateFavoriresTable(response);
@@ -87,7 +87,7 @@ favoritesWidget.addUserCallback = data => {
 
 favoritesWidget.removeUserCallback = data => {
     ApiConnector.removeUserFromFavorites(data, response => {
-        let message = string;
+        let message = '';
         if (response.success) {
             message = `Пользователь c ID ${data} удалён`;
             updateFavoriresTable(response);
